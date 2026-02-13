@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notre Histoire ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:black;
+    color:white;
+}
+
+/* Ecran d'intro */
+#intro{
+    position:absolute;
+    text-align:center;
+    animation:fadeIn 3s ease forwards;
+}
+
+#intro h1{
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+button{
+    padding:15px 30px;
+    font-size:16px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg,#ff4d6d,#ff758f);
+    color:white;
+    cursor:pointer;
+    box-shadow:0 0 20px rgba(255,0,100,0.6);
+}
+
+/* Page principale */
+#main{
+    display:none;
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    animation:slideshow 20s infinite;
+}
+
+/* Diaporama */
+@keyframes slideshow{
+    0%{background-image:url('IMG_2337.jpg');}
+    50%{background-image:url('IMG_9544.jpg');}
+    100%{background-image:url('IMG_9583.jpg');}
+}
+
+.overlay{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(0,0,0,0.5);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.overlay h2{
+    font-size:26px;
+}
+
+/* Roses */
+.rose{
+    position:fixed;
+    top:-50px;
+    font-size:30px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+        opacity:0.8;
+    }
+}
+
+/* Fade */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+    <h1>Ferme les yeux… ❤️</h1>
+    <button onclick="startLove()">Entrer dans notre histoire 💘</button>
+</div>
+
+<!-- PAGE PRINCIPALE -->
+<div id="main">
+    <div class="overlay">
+        <h2>Parce que c’est toi 🌹</h2>
+
+        <iframe style="margin-top:15px;border-radius:12px"
+        src="https://open.spotify.com/embed/track/7yaeoyjJmeHJ6xMFlj4xJr"
+        width="100%" height="80"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
+    </div>
+</div>
+
+<script>
+
+function startLove(){
+    document.getElementById("intro").style.display="none";
+    document.getElementById("main").style.display="block";
+    startRoses();
+}
+
+/* 🌹 Pluie intense */
+function startRoses(){
+    setInterval(()=>{
+        const rose=document.createElement("div");
+        rose.innerHTML="🌹";
+        rose.className="rose";
+        rose.style.left=Math.random()*100+"vw";
+        rose.style.animationDuration=(Math.random()*3+4)+"s";
+        document.body.appendChild(rose);
+
+        setTimeout(()=>{rose.remove();},7000);
+
+    },200);
+}
+
+</script>
+
+</body>
+</html>
